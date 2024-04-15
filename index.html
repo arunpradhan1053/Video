@@ -1,40 +1,36 @@
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TikTok Clone</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Logo, navigation, etc. -->
+    </header>
 
-const app = express();
-const PORT = 3000;
+    <!-- Video Feed -->
+    <div id="video-feed">
+        <!-- Dynamically generated video cards -->
+    </div>
 
-// Set up Multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `${Date.now()}${ext}`);
-  }
-});
+    <!-- Upload Button -->
+    <button id="upload-btn">Upload Video</button>
 
-const upload = multer({ storage });
+    <!-- User Profile -->
+    <div id="user-profile">
+        <!-- User information, profile picture, stats, etc. -->
+    </div>
 
-// Serve the index.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+    <!-- Footer -->
+    <footer>
+        <!-- Copyright, links, etc. -->
+    </footer>
 
-// Handle file upload
-app.post('/upload', upload.single('videoFile'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
-  }
-
-  // Here you can save the file to a database, or perform any other operations
-
-  res.status(200).json({ message: 'File uploaded successfully' });
-});
-
-// Set up server to listen on PORT
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+    <!-- Link to JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
